@@ -2,14 +2,14 @@
 
     Private ID As Integer
     Private Nombre As String
-    Private Precio As Double
+    Private Precio As Decimal
     Private Categoria As String
 
     Public Sub New()
     End Sub
 
-    Public Sub New(iD As Integer, nombre As String, precio As Double, categoria As String,
-                   iD1 As Integer, nombre1 As String, precio1 As Double, categoria1 As String)
+    Public Sub New(iD As Integer, nombre As String, precio As Decimal, categoria As String,
+                   iD1 As Integer, nombre1 As String, precio1 As Decimal, categoria1 As String)
         Me.ID = iD
         Me.Nombre = nombre
         Me.Precio = precio
@@ -20,7 +20,7 @@
         Me.Categoria1 = categoria1
     End Sub
 
-    Public Sub New(iD As Integer, nombre As String, precio As Double, categoria As String)
+    Public Sub New(iD As Integer, nombre As String, precio As Decimal, categoria As String)
         Me.ID = iD
         Me.Nombre = nombre
         Me.Precio = precio
@@ -45,11 +45,11 @@
         End Set
     End Property
 
-    Public Property Precio1 As Double
+    Public Property Precio1 As Decimal
         Get
             Return Precio
         End Get
-        Set(value As Double)
+        Set(value As Decimal)
             Precio = value
         End Set
     End Property
@@ -62,4 +62,10 @@
             Categoria = value
         End Set
     End Property
+
+    Function setUserall(ByRef Nombre, ByRef Precio, ByRef Categoria)
+        Nombre1 = Nombre
+        Precio1 = Precio
+        Categoria1 = Categoria
+    End Function
 End Class

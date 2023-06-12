@@ -15,4 +15,9 @@ Public Class fInicio
     Private Sub fInicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         repos.pruebasql()
     End Sub
+
+    Private Sub bProductos_Click(sender As Object, e As EventArgs) Handles bProductos.Click
+        Me.Visible = False
+        My.Forms.fProductos.Visible = True
+    End Sub
 End Class

@@ -25,7 +25,7 @@ Partial Class fInicio
         Me.bMinimizar = New System.Windows.Forms.Button()
         Me.bSalir = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.bProductos = New System.Windows.Forms.Button()
         Me.bUsuarioABM = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -65,17 +65,17 @@ Partial Class fInicio
         Me.Button3.Text = "Ventas"
         Me.Button3.UseVisualStyleBackColor = False
         '
-        'Button2
+        'bProductos
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button2.Location = New System.Drawing.Point(48, 198)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(217, 72)
-        Me.Button2.TabIndex = 8
-        Me.Button2.Text = "Productos"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.bProductos.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.bProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bProductos.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.bProductos.Location = New System.Drawing.Point(48, 198)
+        Me.bProductos.Name = "bProductos"
+        Me.bProductos.Size = New System.Drawing.Size(217, 72)
+        Me.bProductos.TabIndex = 8
+        Me.bProductos.Text = "Productos"
+        Me.bProductos.UseVisualStyleBackColor = False
         '
         'bUsuarioABM
         '
@@ -99,7 +99,7 @@ Partial Class fInicio
         Me.Controls.Add(Me.bMinimizar)
         Me.Controls.Add(Me.bSalir)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.bProductos)
         Me.Controls.Add(Me.bUsuarioABM)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "fInicio"
@@ -111,6 +111,6 @@ Partial Class fInicio
     Friend WithEvents bMinimizar As Button
     Friend WithEvents bSalir As Button
     Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents bProductos As Button
     Friend WithEvents bUsuarioABM As Button
 End Class

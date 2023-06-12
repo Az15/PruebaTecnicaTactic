@@ -96,14 +96,14 @@ Public Class ContextoDB
 
         Dim da As New SqlDataAdapter("SELECT * from " & tabla & " order by Id", con)
         Dim ds As New DataSet
-        da.Fill(ds, "Clientes")
+        da.Fill(ds, tabla)
 
-        If ds.Tables("Clientes").Rows.Count = 0 Then
+        If ds.Tables(tabla).Rows.Count = 0 Then
             DataGrid.Visible = False
 
         Else
 
-            DataGrid.DataSource = ds.Tables("Clientes")
+            DataGrid.DataSource = ds.Tables(tabla)
             DataGrid.Refresh()
             DataGrid.Visible = True
         End If
@@ -111,7 +111,7 @@ Public Class ContextoDB
 
     Sub Buscar(Tabla As String, DatoTabla1 As String, DatoTabla2 As String, DatoTabla3 As String, ByVal condicion As String, gridview As DataGridView)
         'En el form agregamos el nombre de condicion seguido de un like seguido de la condicion y despues un % para que busque el resto.
-        Dim da As New SqlDataAdapter("SELECT TOP (100) PERCENT ID," & DatoTabla1 & "," & DatoTabla2 & "," & DatoTabla3 & " FROM " & Tabla & " where Cliente like '" &
+        Dim da As New SqlDataAdapter("SELECT TOP (100) PERCENT ID," & DatoTabla1 & "," & DatoTabla2 & "," & DatoTabla3 & " FROM " & Tabla & " where " & DatoTabla1 & " like '" &
                                      condicion & "%' OR Id like '" & condicion & "%'" & "ORDER BY ID", con)
         Dim ds As New DataSet
         da.Fill(ds, Tabla)

@@ -30,21 +30,21 @@ Partial Class fProductos
         Me.bEliminar = New System.Windows.Forms.Button()
         Me.bCambio = New System.Windows.Forms.Button()
         Me.bBuscar = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.gProductos = New System.Windows.Forms.DataGridView()
         Me.lBusque = New System.Windows.Forms.Label()
         Me.tBuscar = New System.Windows.Forms.TextBox()
         Me.bMinimizar = New System.Windows.Forms.Button()
         Me.bSalir = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.tPrecio = New System.Windows.Forms.TextBox()
-        Me.tCuit = New System.Windows.Forms.TextBox()
+        Me.tCategoria = New System.Windows.Forms.TextBox()
         Me.lNombre = New System.Windows.Forms.Label()
         Me.lPrecio = New System.Windows.Forms.Label()
         Me.lCuit = New System.Windows.Forms.Label()
         Me.tNombre = New System.Windows.Forms.TextBox()
         Me.pCampos = New System.Windows.Forms.Panel()
         Me.pBotones.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pCampos.SuspendLayout()
         Me.SuspendLayout()
@@ -73,7 +73,7 @@ Partial Class fProductos
         '
         Me.bCrear.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.bCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bCrear.Location = New System.Drawing.Point(719, 282)
+        Me.bCrear.Location = New System.Drawing.Point(719, 274)
         Me.bCrear.Name = "bCrear"
         Me.bCrear.Size = New System.Drawing.Size(87, 37)
         Me.bCrear.TabIndex = 45
@@ -85,7 +85,7 @@ Partial Class fProductos
         Me.pBotones.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.pBotones.Controls.Add(Me.bEliminar)
         Me.pBotones.Controls.Add(Me.bCambio)
-        Me.pBotones.Location = New System.Drawing.Point(590, 275)
+        Me.pBotones.Location = New System.Drawing.Point(590, 267)
         Me.pBotones.Name = "pBotones"
         Me.pBotones.Size = New System.Drawing.Size(341, 52)
         Me.pBotones.TabIndex = 52
@@ -122,19 +122,19 @@ Partial Class fProductos
         Me.bBuscar.Text = "Buscar"
         Me.bBuscar.UseVisualStyleBackColor = False
         '
-        'DataGridView1
+        'gProductos
         '
-        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(11, 89)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Silver
-        Me.DataGridView1.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
-        Me.DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridView1.Size = New System.Drawing.Size(515, 265)
-        Me.DataGridView1.TabIndex = 50
+        Me.gProductos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.gProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gProductos.Location = New System.Drawing.Point(11, 89)
+        Me.gProductos.Name = "gProductos"
+        Me.gProductos.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Silver
+        Me.gProductos.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gProductos.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
+        Me.gProductos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.gProductos.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black
+        Me.gProductos.Size = New System.Drawing.Size(515, 250)
+        Me.gProductos.TabIndex = 50
         '
         'lBusque
         '
@@ -188,12 +188,12 @@ Partial Class fProductos
         Me.tPrecio.Size = New System.Drawing.Size(151, 20)
         Me.tPrecio.TabIndex = 0
         '
-        'tCuit
+        'tCategoria
         '
-        Me.tCuit.Location = New System.Drawing.Point(178, 76)
-        Me.tCuit.Name = "tCuit"
-        Me.tCuit.Size = New System.Drawing.Size(151, 20)
-        Me.tCuit.TabIndex = 6
+        Me.tCategoria.Location = New System.Drawing.Point(178, 76)
+        Me.tCategoria.Name = "tCategoria"
+        Me.tCategoria.Size = New System.Drawing.Size(151, 20)
+        Me.tCategoria.TabIndex = 6
         '
         'lNombre
         '
@@ -217,7 +217,7 @@ Partial Class fProductos
         Me.lCuit.Name = "lCuit"
         Me.lCuit.Size = New System.Drawing.Size(100, 20)
         Me.lCuit.TabIndex = 14
-        Me.lCuit.Text = "Cuit:"
+        Me.lCuit.Text = "Categoria: "
         '
         'tNombre
         '
@@ -233,7 +233,7 @@ Partial Class fProductos
         Me.pCampos.Controls.Add(Me.lCuit)
         Me.pCampos.Controls.Add(Me.lPrecio)
         Me.pCampos.Controls.Add(Me.lNombre)
-        Me.pCampos.Controls.Add(Me.tCuit)
+        Me.pCampos.Controls.Add(Me.tCategoria)
         Me.pCampos.Controls.Add(Me.tPrecio)
         Me.pCampos.Location = New System.Drawing.Point(590, 99)
         Me.pCampos.Name = "pCampos"
@@ -244,14 +244,14 @@ Partial Class fProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(961, 421)
+        Me.ClientSize = New System.Drawing.Size(961, 386)
         Me.Controls.Add(Me.bMenu)
         Me.Controls.Add(Me.lLegajo)
         Me.Controls.Add(Me.bCrear)
         Me.Controls.Add(Me.pCampos)
         Me.Controls.Add(Me.pBotones)
         Me.Controls.Add(Me.bBuscar)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.gProductos)
         Me.Controls.Add(Me.lBusque)
         Me.Controls.Add(Me.tBuscar)
         Me.Controls.Add(Me.bMinimizar)
@@ -264,7 +264,7 @@ Partial Class fProductos
         Me.ShowInTaskbar = False
         Me.Text = "fProductos"
         Me.pBotones.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gProductos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pCampos.ResumeLayout(False)
         Me.pCampos.PerformLayout()
@@ -280,14 +280,14 @@ Partial Class fProductos
     Friend WithEvents bEliminar As Button
     Friend WithEvents bCambio As Button
     Friend WithEvents bBuscar As Button
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents gProductos As DataGridView
     Friend WithEvents lBusque As Label
     Friend WithEvents tBuscar As TextBox
     Friend WithEvents bMinimizar As Button
     Friend WithEvents bSalir As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents tPrecio As TextBox
-    Friend WithEvents tCuit As TextBox
+    Friend WithEvents tCategoria As TextBox
     Friend WithEvents lNombre As Label
     Friend WithEvents lPrecio As Label
     Friend WithEvents lCuit As Label

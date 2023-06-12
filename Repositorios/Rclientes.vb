@@ -44,18 +44,18 @@ Public Class Rclientes
         contexto.SQL_Accion(Query)
     End Sub
     'Utilizamos el SQLAccion para enviar la consulta de delete.
-    Sub BajaCliente(tCliente As TextBox, lLegajo As Label, gridCliente As DataGridView)
-        If MessageBox.Show("Está por ELIMINAR definitivamente al Cliente: " & tCliente.Text.Trim.ToUpper & ", Está SEGURO?",
-                           "Eliminar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+    Sub BajaCliente(tProducto As TextBox, lLegajo As Label, gridProductos As DataGridView)
+        If MessageBox.Show("Eliminar Producto: " & tProducto.Text.Trim.ToUpper & ", Está SEGURO?",
+                           "Eliminar Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
                            MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.No Then Exit Sub
         '-------------------------------------------------------------------------------------------------------------------'
         If contexto.SQL_Accion("delete from pruebademo.dbo.Clientes  where  ID =" & Val(lLegajo.Text)) = False Then
             MsgBox("Hubo un error al intentar borrar al Cliente, reintente, y si el error persiste, anote todos los datos que quizo ingresar y comuníquese con el programador.")
         Else
-            buscar(" ID =" & Val(lLegajo.Text), gridCliente)
+            buscar(" ID =" & Val(lLegajo.Text), gridProductos)
             MsgBox("El Cliente fue ELIMINADO de la base de datos.")
             lLegajo.Text.Replace(lLegajo.Text, "0")
-            contexto.ShowGrid(tabla, gridCliente)
+            contexto.ShowGrid(tabla, gridProductos)
 
         End If
     End Sub
