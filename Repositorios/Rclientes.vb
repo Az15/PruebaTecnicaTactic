@@ -33,6 +33,9 @@ Public Class Rclientes
         Else
             errores &= "Debe ingresar numeros y no caracteres." & en
         End If
+        If MailValido(mcliente.Correo) = False Then
+            errores &= "Debe ingresar Email Valido." & en
+        End If
         If errores.Length > 0 Then
             MsgBox("Hubo errores, por favor verifique y corrija antes de intentar de nuevo:" & en & en & errores)
             Exit Sub
@@ -72,6 +75,13 @@ Public Class Rclientes
         Else
             errores &= "Debe ingresar numeros y no caracteres." & en
         End If
+        ' ArreglarCampo(tCorreo)
+        If MailValido(tCorreo.Text) = False Then
+            errores &= "Debe ingresar Email Valido." & en
+        Else
+
+        End If
+
         If errores.Length > 0 Then
             MsgBox("Hubo errores, por favor verifique y corrija antes de intentar de nuevo:" & en & en & errores)
             Exit Sub
@@ -139,7 +149,7 @@ Public Class Rclientes
             End If
             'Realiza una validacion en todos los campos dependiendo el estado del ciclo.
             If contexto.YaExisteSQL("select * from clientes where " & datotabla & "='" & campocliente & "'") Then
-                MessageBox.Show("Usted esta ingresando en el lugar de " & datotabla & " un cliente que ya existe.", "Ya existe Cliente ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+                MessageBox.Show("Usted esta ingresando un " & datotabla & " que corresponde a un cliente ya dado de alta.", "Ya existe Cliente ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
                 comprobacion = True
                 'Cerramos el For, con la condicion para que no valide el nuevo cliente
                 dt1 = 3
@@ -157,4 +167,13 @@ Public Class Rclientes
     Function VNum(ByVal NTexto As String) As Decimal
         Return CDec(Val(NTexto.Trim.Replace(",", ".")))
     End Function
+
+    Function ArreglarCampo(campo As TextBox)
+        contexto.ArreglarCampo(campo)
+    End Function
+
+    Function MailValido(campo As String) As Boolean
+        Return contexto.ValidateEmail(campo)
+    End Function
+
 End Class

@@ -140,5 +140,16 @@ Public Class ContextoDB
         "").Replace("=", "").Replace("&", "")
     End Sub
 
+    Sub ArreglarCampo(ByRef campo As String)
+        campo = campo.Trim.Replace("'", "").Replace("""",
+        "").Replace("*", "").Replace("+", "").Replace("-", "").Replace("/",
+        "").Replace(":", "").Replace("`", "").Replace("<", "").Replace(">",
+        "").Replace("=", "").Replace("&", "")
+    End Sub
 
+    Public Function ValidateEmail(ByVal email As String) As Boolean
+        Dim emailRegex As New Text.RegularExpressions.Regex("^(?<user>[^@]+)@(?<host>.+)$")
+        Dim emailMatch As Text.RegularExpressions.Match = emailRegex.Match(email)
+        Return emailMatch.Success
+    End Function
 End Class
