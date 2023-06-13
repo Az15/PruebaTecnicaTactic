@@ -43,6 +43,7 @@ Partial Class fProductos
         Me.lCuit = New System.Windows.Forms.Label()
         Me.tNombre = New System.Windows.Forms.TextBox()
         Me.pCampos = New System.Windows.Forms.Panel()
+        Me.cbFiltro = New System.Windows.Forms.ComboBox()
         Me.pBotones.SuspendLayout()
         CType(Me.gProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,11 +241,21 @@ Partial Class fProductos
         Me.pCampos.Size = New System.Drawing.Size(341, 135)
         Me.pCampos.TabIndex = 53
         '
+        'cbFiltro
+        '
+        Me.cbFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbFiltro.FormattingEnabled = True
+        Me.cbFiltro.Location = New System.Drawing.Point(572, 54)
+        Me.cbFiltro.Name = "cbFiltro"
+        Me.cbFiltro.Size = New System.Drawing.Size(121, 21)
+        Me.cbFiltro.TabIndex = 56
+        '
         'fProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(961, 386)
+        Me.Controls.Add(Me.cbFiltro)
         Me.Controls.Add(Me.bMenu)
         Me.Controls.Add(Me.lLegajo)
         Me.Controls.Add(Me.bCrear)
@@ -293,4 +304,5 @@ Partial Class fProductos
     Friend WithEvents lCuit As Label
     Friend WithEvents tNombre As TextBox
     Friend WithEvents pCampos As Panel
+    Friend WithEvents cbFiltro As ComboBox
 End Class

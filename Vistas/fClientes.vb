@@ -14,18 +14,18 @@ Public Class fClientes
         repositorio.NoBasicInyeccion(tTelefono)
         'Realizamos de manear rustica las validaciones
         If repositorio.ComprobacionCliente(tCliente.Text) Then
-            repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo)
-            lLegajo.Text.Replace(lLegajo.Text, "0")
+            repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo, lLegajo)
+
             Exit Sub
         End If
         If repositorio.ComprobacionCliente(tCorreo.Text) Then
-            repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo)
-            lLegajo.Text.Replace(lLegajo.Text, "0")
+            repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo, lLegajo)
+
             Exit Sub
         End If
         If repositorio.ComprobacionCliente(tTelefono.Text) Then
-            repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo)
-            lLegajo.Text.Replace(lLegajo.Text, "0")
+            repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo, lLegajo)
+
             Exit Sub
         End If
         'Guardamos los datos en un objeto de usuario.
@@ -34,8 +34,8 @@ Public Class fClientes
         repositorio.AltaCliente(usuario)
         'Le damos un Refresh a la base de datos.
         repositorio.CargarClientes(gClientes)
-        repositorio.LimpiarCampos(tCliente, tCorreo, tTelefono)
-        lLegajo.Text.Replace(lLegajo.Text, "0")
+        repositorio.LimpiarCampos(tCliente, tCorreo, tTelefono, lLegajo)
+
     End Sub
 
     Private Sub bSalir_Click(sender As Object, e As EventArgs) Handles bSalir.Click
@@ -44,9 +44,8 @@ Public Class fClientes
     End Sub
 
     Private Sub fUsuarios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        repositorio.LimpiarCampos(tCliente, tCorreo, tTelefono)
         repositorio.CargarClientes(gClientes)
-        lLegajo.Text.Replace(lLegajo.Text, "0")
+        repositorio.LimpiarCampos(tCliente, tCorreo, tTelefono, lLegajo)
     End Sub
 
     Private Sub bMenu_Click(sender As Object, e As EventArgs) Handles bMenu.Click
@@ -79,7 +78,7 @@ Public Class fClientes
     Private Sub bEliminar_Click(sender As Object, e As EventArgs) Handles bEliminar.Click
         repositorio.BajaCliente(tCliente, lLegajo, gClientes)
         repositorio.CargarClientes(gClientes)
-        repositorio.LimpiarCampos(tCliente, tCorreo, tTelefono)
+        repositorio.LimpiarCampos(tCliente, tCorreo, tTelefono, lLegajo)
     End Sub
 
 
@@ -106,11 +105,11 @@ Public Class fClientes
         repositorio.ModificacionCliente(tCliente, tCorreo, tTelefono, lLegajo.Text)
         repositorio.CargarClientes(gClientes)
         lLegajo.Text.Replace(lLegajo.Text, "0")
-        repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo)
+        repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo, lLegajo)
     End Sub
 
     Private Sub bLimpiarCampos_Click(sender As Object, e As EventArgs) Handles bLimpiarCampos.Click
-        repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo)
+        repositorio.LimpiarCampos(tCliente, tTelefono, tCorreo, lLegajo)
     End Sub
 
     Private Sub tBuscar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tBuscar.KeyPress

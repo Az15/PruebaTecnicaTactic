@@ -24,6 +24,7 @@ Partial Class fClientes
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(fClientes))
         Me.lLegajo = New System.Windows.Forms.Label()
         Me.bCrear = New System.Windows.Forms.Button()
@@ -183,17 +184,17 @@ Partial Class fClientes
         '
         'gClientes
         '
-        Me.gClientes.BackgroundColor = System.Drawing.Color.Gainsboro
+        Me.gClientes.BackgroundColor = System.Drawing.SystemColors.GrayText
         Me.gClientes.BorderStyle = System.Windows.Forms.BorderStyle.None
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.AliceBlue
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gClientes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.gClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gClientes.ColumnHeadersVisible = False
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Menu
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -208,9 +209,14 @@ Partial Class fClientes
         Me.gClientes.Name = "gClientes"
         Me.gClientes.ReadOnly = True
         Me.gClientes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.gClientes.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Black
-        Me.gClientes.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Modern No. 20", 8.249999!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gClientes.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
+        Me.gClientes.RowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.gClientes.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Silver
+        Me.gClientes.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Constantia", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gClientes.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
         Me.gClientes.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Gray
         Me.gClientes.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
         Me.gClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect

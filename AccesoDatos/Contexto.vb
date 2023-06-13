@@ -105,6 +105,7 @@ Public Class ContextoDB
 
             DataGrid.DataSource = ds.Tables(tabla)
             DataGrid.Refresh()
+            DataGrid.ClearSelection()
             DataGrid.Visible = True
         End If
     End Sub
@@ -152,4 +153,9 @@ Public Class ContextoDB
         Dim emailMatch As Text.RegularExpressions.Match = emailRegex.Match(email)
         Return emailMatch.Success
     End Function
+
+    Sub ListarDatosDistinc(datotabla As String, tabla As String)
+        Dim Query As String = "Select DISTINCT " & datotabla & " from " & tabla & " "
+
+    End Sub
 End Class

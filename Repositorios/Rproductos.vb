@@ -119,7 +119,8 @@ Public Class Rproductos
 
 
     'Este es particular del formulario.
-    Sub LimpiarCampos(tNombre As TextBox, tPrecio As TextBox, tCategoria As TextBox)
+    Sub LimpiarCampos(tNombre As TextBox, tPrecio As TextBox, tCategoria As TextBox, lLegajo As Label)
+        lLegajo.Text = ""
         tNombre.Text = ""
         tPrecio.Text = ""
         tCategoria.Text = ""

@@ -124,7 +124,8 @@ Public Class Rclientes
 
 
     'Este es particular del formulario.
-    Sub LimpiarCampos(tCliente As TextBox, tCorreo As TextBox, tTelefono As TextBox)
+    Sub LimpiarCampos(tCliente As TextBox, tCorreo As TextBox, tTelefono As TextBox, lLegajo As Label)
+        lLegajo.Text = ""
         tCliente.Text = ""
         tCorreo.Text = ""
         tTelefono.Text = ""

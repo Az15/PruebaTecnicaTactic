@@ -11,8 +11,7 @@ Public Class fProductos
         repositorio.NoBasicInyeccion(tPrecio)
         'Realizamos de manera rustica las validaciones
         If repositorio.ComprobacionProducto(tNombre.Text) Then
-            repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria)
-            lLegajo.Text.Replace(lLegajo.Text, "0")
+            repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
             Exit Sub
         End If
         'Guardamos los datos en un objeto de usuario.
@@ -21,8 +20,7 @@ Public Class fProductos
         repositorio.AltaProducto(producto)
         'Le damos un Refresh a la base de datos.
         repositorio.CargarProductos(gProductos)
-        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria)
-        lLegajo.Text.Replace(lLegajo.Text, "0")
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
 
     Private Sub bSalir_Click(sender As Object, e As EventArgs) Handles bSalir.Click
@@ -31,9 +29,8 @@ Public Class fProductos
     End Sub
 
     Private Sub fUsuarios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria)
         repositorio.CargarProductos(gProductos)
-        lLegajo.Text.Replace(lLegajo.Text, "0")
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
 
     Private Sub bMenu_Click(sender As Object, e As EventArgs) Handles bMenu.Click
@@ -66,7 +63,7 @@ Public Class fProductos
     Private Sub bEliminar_Click(sender As Object, e As EventArgs) Handles bEliminar.Click
         repositorio.BajaCliente(tNombre, lLegajo, gProductos)
         repositorio.CargarProductos(gProductos)
-        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria)
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
 
 
@@ -75,9 +72,9 @@ Public Class fProductos
         Dim tfila As String
 
         If IsNothing(gProductos.Rows(fila).Cells(0).Value) Then
-            lLegajo.Text.Replace(lLegajo.Text, "0")
             pBotones.Visible = False
             pCampos.Visible = False
+            repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
             Exit Sub
         Else
             tfila = gProductos.Rows(fila).Cells(0).Value
@@ -93,7 +90,7 @@ Public Class fProductos
         repositorio.ModificacionProducto(tNombre, tCategoria, tPrecio, lLegajo.Text)
         repositorio.CargarProductos(gProductos)
         lLegajo.Text.Replace(lLegajo.Text, "0")
-        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria)
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
 
     'Private Sub bLimpiarCampos_Click(sender As Object, e As EventArgs) Handles bLimpiarCampos.Click
