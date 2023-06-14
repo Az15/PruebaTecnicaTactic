@@ -44,6 +44,8 @@ Partial Class fProductos
         Me.tNombre = New System.Windows.Forms.TextBox()
         Me.pCampos = New System.Windows.Forms.Panel()
         Me.cbFiltro = New System.Windows.Forms.ComboBox()
+        Me.bQuitarFiltro = New System.Windows.Forms.Button()
+        Me.lFiltroCategorias = New System.Windows.Forms.Label()
         Me.pBotones.SuspendLayout()
         CType(Me.gProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,7 +56,7 @@ Partial Class fProductos
         '
         Me.bMenu.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.bMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bMenu.Location = New System.Drawing.Point(441, 41)
+        Me.bMenu.Location = New System.Drawing.Point(846, 329)
         Me.bMenu.Name = "bMenu"
         Me.bMenu.Size = New System.Drawing.Size(85, 45)
         Me.bMenu.TabIndex = 55
@@ -64,7 +66,7 @@ Partial Class fProductos
         'lLegajo
         '
         Me.lLegajo.AutoSize = True
-        Me.lLegajo.Location = New System.Drawing.Point(916, 73)
+        Me.lLegajo.Location = New System.Drawing.Point(916, 93)
         Me.lLegajo.Name = "lLegajo"
         Me.lLegajo.Size = New System.Drawing.Size(13, 13)
         Me.lLegajo.TabIndex = 54
@@ -116,7 +118,7 @@ Partial Class fProductos
         'bBuscar
         '
         Me.bBuscar.BackColor = System.Drawing.SystemColors.Control
-        Me.bBuscar.Location = New System.Drawing.Point(360, 61)
+        Me.bBuscar.Location = New System.Drawing.Point(359, 48)
         Me.bBuscar.Name = "bBuscar"
         Me.bBuscar.Size = New System.Drawing.Size(75, 23)
         Me.bBuscar.TabIndex = 51
@@ -125,9 +127,11 @@ Partial Class fProductos
         '
         'gProductos
         '
+        Me.gProductos.BackgroundColor = System.Drawing.SystemColors.Control
         Me.gProductos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.gProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gProductos.Location = New System.Drawing.Point(11, 89)
+        Me.gProductos.GridColor = System.Drawing.SystemColors.Control
+        Me.gProductos.Location = New System.Drawing.Point(11, 82)
         Me.gProductos.Name = "gProductos"
         Me.gProductos.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Silver
         Me.gProductos.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -140,7 +144,7 @@ Partial Class fProductos
         'lBusque
         '
         Me.lBusque.AutoSize = True
-        Me.lBusque.Location = New System.Drawing.Point(8, 66)
+        Me.lBusque.Location = New System.Drawing.Point(7, 53)
         Me.lBusque.Name = "lBusque"
         Me.lBusque.Size = New System.Drawing.Size(110, 13)
         Me.lBusque.TabIndex = 49
@@ -148,7 +152,7 @@ Partial Class fProductos
         '
         'tBuscar
         '
-        Me.tBuscar.Location = New System.Drawing.Point(122, 63)
+        Me.tBuscar.Location = New System.Drawing.Point(121, 50)
         Me.tBuscar.Name = "tBuscar"
         Me.tBuscar.Size = New System.Drawing.Size(232, 20)
         Me.tBuscar.TabIndex = 48
@@ -184,21 +188,21 @@ Partial Class fProductos
         '
         'tPrecio
         '
-        Me.tPrecio.Location = New System.Drawing.Point(177, 42)
+        Me.tPrecio.Location = New System.Drawing.Point(177, 56)
         Me.tPrecio.Name = "tPrecio"
         Me.tPrecio.Size = New System.Drawing.Size(151, 20)
         Me.tPrecio.TabIndex = 0
         '
         'tCategoria
         '
-        Me.tCategoria.Location = New System.Drawing.Point(178, 76)
+        Me.tCategoria.Location = New System.Drawing.Point(178, 90)
         Me.tCategoria.Name = "tCategoria"
         Me.tCategoria.Size = New System.Drawing.Size(151, 20)
         Me.tCategoria.TabIndex = 6
         '
         'lNombre
         '
-        Me.lNombre.Location = New System.Drawing.Point(2, 11)
+        Me.lNombre.Location = New System.Drawing.Point(2, 25)
         Me.lNombre.Name = "lNombre"
         Me.lNombre.Size = New System.Drawing.Size(100, 23)
         Me.lNombre.TabIndex = 12
@@ -206,7 +210,7 @@ Partial Class fProductos
         '
         'lPrecio
         '
-        Me.lPrecio.Location = New System.Drawing.Point(2, 43)
+        Me.lPrecio.Location = New System.Drawing.Point(2, 57)
         Me.lPrecio.Name = "lPrecio"
         Me.lPrecio.Size = New System.Drawing.Size(100, 23)
         Me.lPrecio.TabIndex = 13
@@ -214,7 +218,7 @@ Partial Class fProductos
         '
         'lCuit
         '
-        Me.lCuit.Location = New System.Drawing.Point(3, 79)
+        Me.lCuit.Location = New System.Drawing.Point(3, 93)
         Me.lCuit.Name = "lCuit"
         Me.lCuit.Size = New System.Drawing.Size(100, 20)
         Me.lCuit.TabIndex = 14
@@ -222,7 +226,7 @@ Partial Class fProductos
         '
         'tNombre
         '
-        Me.tNombre.Location = New System.Drawing.Point(177, 8)
+        Me.tNombre.Location = New System.Drawing.Point(177, 22)
         Me.tNombre.Name = "tNombre"
         Me.tNombre.Size = New System.Drawing.Size(151, 20)
         Me.tNombre.TabIndex = 24
@@ -236,7 +240,7 @@ Partial Class fProductos
         Me.pCampos.Controls.Add(Me.lNombre)
         Me.pCampos.Controls.Add(Me.tCategoria)
         Me.pCampos.Controls.Add(Me.tPrecio)
-        Me.pCampos.Location = New System.Drawing.Point(590, 99)
+        Me.pCampos.Location = New System.Drawing.Point(590, 110)
         Me.pCampos.Name = "pCampos"
         Me.pCampos.Size = New System.Drawing.Size(341, 135)
         Me.pCampos.TabIndex = 53
@@ -245,16 +249,38 @@ Partial Class fProductos
         '
         Me.cbFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cbFiltro.FormattingEnabled = True
-        Me.cbFiltro.Location = New System.Drawing.Point(572, 54)
+        Me.cbFiltro.Location = New System.Drawing.Point(724, 54)
         Me.cbFiltro.Name = "cbFiltro"
         Me.cbFiltro.Size = New System.Drawing.Size(121, 21)
         Me.cbFiltro.TabIndex = 56
+        '
+        'bQuitarFiltro
+        '
+        Me.bQuitarFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bQuitarFiltro.Location = New System.Drawing.Point(853, 51)
+        Me.bQuitarFiltro.Name = "bQuitarFiltro"
+        Me.bQuitarFiltro.Size = New System.Drawing.Size(75, 25)
+        Me.bQuitarFiltro.TabIndex = 57
+        Me.bQuitarFiltro.Text = "Quitar Filtro"
+        Me.bQuitarFiltro.UseVisualStyleBackColor = True
+        Me.bQuitarFiltro.Visible = False
+        '
+        'lFiltroCategorias
+        '
+        Me.lFiltroCategorias.AutoSize = True
+        Me.lFiltroCategorias.Location = New System.Drawing.Point(614, 58)
+        Me.lFiltroCategorias.Name = "lFiltroCategorias"
+        Me.lFiltroCategorias.Size = New System.Drawing.Size(106, 13)
+        Me.lFiltroCategorias.TabIndex = 58
+        Me.lFiltroCategorias.Text = "Filtrar por Categorias:"
         '
         'fProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(961, 386)
+        Me.Controls.Add(Me.lFiltroCategorias)
+        Me.Controls.Add(Me.bQuitarFiltro)
         Me.Controls.Add(Me.cbFiltro)
         Me.Controls.Add(Me.bMenu)
         Me.Controls.Add(Me.lLegajo)
@@ -305,4 +331,6 @@ Partial Class fProductos
     Friend WithEvents tNombre As TextBox
     Friend WithEvents pCampos As Panel
     Friend WithEvents cbFiltro As ComboBox
+    Friend WithEvents bQuitarFiltro As Button
+    Friend WithEvents lFiltroCategorias As Label
 End Class

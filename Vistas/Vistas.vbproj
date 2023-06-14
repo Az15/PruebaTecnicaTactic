@@ -75,6 +75,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ventas\fCarritoFinal.Designer.vb">
+      <DependentUpon>fCarritoFinal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\fCarritoFinal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fProductos.Designer.vb">
       <DependentUpon>fProductos.vb</DependentUpon>
     </Compile>
@@ -92,6 +98,30 @@
     </Compile>
     <Compile Include="fInicio.Designer.vb">
       <DependentUpon>fInicio.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\fInicioVenta.Designer.vb">
+      <DependentUpon>fInicioVenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\fInicioVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\Historial\fVentaDetalle.Designer.vb">
+      <DependentUpon>fVentaDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\Historial\fVentaDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\fVentas.Designer.vb">
+      <DependentUpon>fVentas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\fVentas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\Historial\fVentasHistorial.Designer.vb">
+      <DependentUpon>fVentasHistorial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\Historial\fVentasHistorial.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -112,6 +142,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Ventas\fCarritoFinal.resx">
+      <DependentUpon>fCarritoFinal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fClientes.resx">
       <DependentUpon>fClientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +153,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fProductos.resx">
       <DependentUpon>fProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\fInicioVenta.resx">
+      <DependentUpon>fInicioVenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\Historial\fVentaDetalle.resx">
+      <DependentUpon>fVentaDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\fVentas.resx">
+      <DependentUpon>fVentas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\Historial\fVentasHistorial.resx">
+      <DependentUpon>fVentasHistorial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

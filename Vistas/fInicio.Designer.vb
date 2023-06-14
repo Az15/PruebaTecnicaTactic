@@ -24,7 +24,7 @@ Partial Class fInicio
     Private Sub InitializeComponent()
         Me.bMinimizar = New System.Windows.Forms.Button()
         Me.bSalir = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.bVentas = New System.Windows.Forms.Button()
         Me.bProductos = New System.Windows.Forms.Button()
         Me.bUsuarioABM = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -53,17 +53,17 @@ Partial Class fInicio
         Me.bSalir.Text = "x"
         Me.bSalir.UseVisualStyleBackColor = False
         '
-        'Button3
+        'bVentas
         '
-        Me.Button3.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button3.Location = New System.Drawing.Point(48, 314)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(217, 72)
-        Me.Button3.TabIndex = 9
-        Me.Button3.Text = "Ventas"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.bVentas.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.bVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bVentas.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.bVentas.Location = New System.Drawing.Point(48, 314)
+        Me.bVentas.Name = "bVentas"
+        Me.bVentas.Size = New System.Drawing.Size(217, 72)
+        Me.bVentas.TabIndex = 9
+        Me.bVentas.Text = "Ventas"
+        Me.bVentas.UseVisualStyleBackColor = False
         '
         'bProductos
         '
@@ -98,7 +98,7 @@ Partial Class fInicio
         Me.ClientSize = New System.Drawing.Size(310, 450)
         Me.Controls.Add(Me.bMinimizar)
         Me.Controls.Add(Me.bSalir)
-        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.bVentas)
         Me.Controls.Add(Me.bProductos)
         Me.Controls.Add(Me.bUsuarioABM)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -110,7 +110,7 @@ Partial Class fInicio
 
     Friend WithEvents bMinimizar As Button
     Friend WithEvents bSalir As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents bVentas As Button
     Friend WithEvents bProductos As Button
     Friend WithEvents bUsuarioABM As Button
 End Class

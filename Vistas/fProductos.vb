@@ -18,6 +18,7 @@ Public Class fProductos
         producto.setUserall(tNombre.Text, tPrecio.Text, tCategoria.Text)
         'Enviamos los datos a la base de datos.
         repositorio.AltaProducto(producto)
+        repositorio.CargarFiltro(cbFiltro)
         'Le damos un Refresh a la base de datos.
         repositorio.CargarProductos(gProductos)
         repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
@@ -25,10 +26,11 @@ Public Class fProductos
 
     Private Sub bSalir_Click(sender As Object, e As EventArgs) Handles bSalir.Click
         If MessageBox.Show("¿Está seguro de que desea salir del Programa?", "Salir del Programa",
-        MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then End
+        MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then Application.Exit()
     End Sub
 
     Private Sub fUsuarios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        repositorio.CargarFiltro(cbFiltro)
         repositorio.CargarProductos(gProductos)
         repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
@@ -58,6 +60,7 @@ Public Class fProductos
 
     Private Sub bBuscar_Click(sender As Object, e As EventArgs) Handles bBuscar.Click
         repositorio.buscar(tBuscar.Text, gProductos)
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
 
     Private Sub bEliminar_Click(sender As Object, e As EventArgs) Handles bEliminar.Click
@@ -103,4 +106,14 @@ Public Class fProductos
         End If
     End Sub
 
+    Private Sub cbFiltro_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbFiltro.SelectedValueChanged
+        repositorio.buscar(cbFiltro.Text, gProductos)
+        bQuitarFiltro.Visible = True
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
+    End Sub
+
+    Private Sub bQuitarFiltro_Click(sender As Object, e As EventArgs) Handles bQuitarFiltro.Click
+        repositorio.CargarProductos(gProductos)
+        repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
+    End Sub
 End Class

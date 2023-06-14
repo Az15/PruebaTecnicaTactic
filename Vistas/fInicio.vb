@@ -20,4 +20,9 @@ Public Class fInicio
         Me.Visible = False
         My.Forms.fProductos.Visible = True
     End Sub
+
+    Private Sub bVentas_Click(sender As Object, e As EventArgs) Handles bVentas.Click
+        Me.Visible = False
+        My.Forms.fInicioVenta.Visible = True
+    End Sub
 End Class

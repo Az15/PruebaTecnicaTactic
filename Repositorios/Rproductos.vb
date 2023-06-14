@@ -152,7 +152,9 @@ Public Class Rproductos
         Return CDec(Val(NTexto.Trim.Replace(",", ".")))
     End Function
 
-    Function ArreglarCampo(campo As TextBox)
-        contexto.ArreglarCampo(campo)
-    End Function
+    Sub CargarFiltro(conboBox As ComboBox)
+        contexto.ListarDatosDistinc(dato3, tabla, conboBox)
+    End Sub
+
+
 End Class

@@ -63,9 +63,9 @@
         End Set
     End Property
 
-    Function setUserall(ByRef Nombre, ByRef Precio, ByRef Categoria)
+    Sub setUserall(ByRef Nombre, ByRef Precio, ByRef Categoria)
         Nombre1 = Nombre
         Precio1 = Precio
         Categoria1 = Categoria
-    End Function
+    End Sub
 End Class

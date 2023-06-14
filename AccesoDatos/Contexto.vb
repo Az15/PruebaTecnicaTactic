@@ -89,8 +89,17 @@ Public Class ContextoDB
         End If
     End Sub
 
-    Sub CargarCampos()
+    Sub CargarVenta(Tabla As String, lLegajo As Label, lClienteSelect As Label, Datotabla1 As String)
+        If Val(lLegajo.Text) = 0 Then
+            MessageBox.Show("Error al cargar los datos de cliente, hable con un administrador", "Error al cargar datos Legajo Erroneo")
+            Exit Sub
+        End If
+        Dim da As New SqlDataAdapter("SELECT upper(ltrim(rtrim(isnull(" & Datotabla1 & ",'****')))) as " & Datotabla1 & " from " & Tabla & " where ID=" & Val(lLegajo.Text), con)
+        Dim ds As New DataSet
+        da.Fill(ds, Tabla)
+        lClienteSelect.Text = ds.Tables(Tabla).Rows(0)(Datotabla1)
     End Sub
+
     'Enviar los datos de la base de datos a la grilla
     Sub ShowGrid(tabla As String, DataGrid As DataGridView)
 
@@ -109,11 +118,28 @@ Public Class ContextoDB
             DataGrid.Visible = True
         End If
     End Sub
+    Sub ShowOneColGrid(tabla As String, columna As String, DataGrid As DataGridView)
 
+        Dim da As New SqlDataAdapter("SELECT Id, " & columna & " from " & tabla & " order by Id", con)
+        Dim ds As New DataSet
+        da.Fill(ds, tabla)
+
+        If ds.Tables(tabla).Rows.Count = 0 Then
+            DataGrid.Visible = False
+
+        Else
+
+            DataGrid.DataSource = ds.Tables(tabla)
+            DataGrid.Refresh()
+            DataGrid.ClearSelection()
+            DataGrid.Visible = True
+        End If
+    End Sub
+    'Filtra por un solo dato de tabla en este caso el primero, el cual seria el nombre
     Sub Buscar(Tabla As String, DatoTabla1 As String, DatoTabla2 As String, DatoTabla3 As String, ByVal condicion As String, gridview As DataGridView)
         'En el form agregamos el nombre de condicion seguido de un like seguido de la condicion y despues un % para que busque el resto.
-        Dim da As New SqlDataAdapter("SELECT TOP (100) PERCENT ID," & DatoTabla1 & "," & DatoTabla2 & "," & DatoTabla3 & " FROM " & Tabla & " where " & DatoTabla1 & " like '" &
-                                     condicion & "%' OR Id like '" & condicion & "%'" & "ORDER BY ID", con)
+        Dim da As New SqlDataAdapter("SELECT TOP (100) PERCENT ID," & DatoTabla1 & "," & DatoTabla2 & "," & DatoTabla3 & " FROM " & Tabla & " where " & DatoTabla1 & " like '%" & condicion & "%' OR " & DatoTabla2 &
+                                         " like '%" & condicion & "%'" & "OR " & DatoTabla3 & " like '%" & condicion & "%'" & "ORDER BY ID", con)
         Dim ds As New DataSet
         da.Fill(ds, Tabla)
         If ds.Tables(Tabla).Rows.Count = 0 Then
@@ -125,7 +151,6 @@ Public Class ContextoDB
 
     End Sub
     Sub Filtro(tabla As String, datoTabla1 As String, datoTabla2 As String, datoTabla3 As String, ByVal condicion As String, gridview As DataGridView)
-        Dim x As Integer = 0, cosa As String
         Dim daprod As New SqlDataAdapter("select * from " & tabla & " where " & datoTabla1 & " like '%" & condicion & "%' OR " & datoTabla2 &
                                          " like '%" & condicion & "%'" & "OR " & datoTabla3 & " like '%" & condicion & "%'", con)
         Dim dsprod As New DataSet
@@ -154,8 +179,22 @@ Public Class ContextoDB
         Return emailMatch.Success
     End Function
 
-    Sub ListarDatosDistinc(datotabla As String, tabla As String)
-        Dim Query As String = "Select DISTINCT " & datotabla & " from " & tabla & " "
+    Sub ListarDatosDistinc(datotabla As String, tabla As String, comboBox As ComboBox)
+        Dim Query As String = "Select DISTINCT " & datotabla & " from " & tabla
+        Dim Command As New SqlCommand(Query, con)
+        Dim Datatable As New DataTable()
+
+        Try
+            con.Open()
+            Datatable.Load(Command.ExecuteReader())
+            comboBox.DisplayMember = datotabla
+            comboBox.ValueMember = datotabla
+            comboBox.DataSource = Datatable
+            con.Close()
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 End Class
