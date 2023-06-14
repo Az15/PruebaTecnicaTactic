@@ -116,4 +116,5 @@ Public Class fProductos
         repositorio.CargarProductos(gProductos)
         repositorio.LimpiarCampos(tNombre, tPrecio, tCategoria, lLegajo)
     End Sub
+
 End Class

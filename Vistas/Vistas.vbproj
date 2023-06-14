@@ -100,12 +100,6 @@
       <DependentUpon>fInicio.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ventas\fInicioVenta.Designer.vb">
-      <DependentUpon>fInicioVenta.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Ventas\fInicioVenta.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Ventas\Historial\fVentaDetalle.Designer.vb">
       <DependentUpon>fVentaDetalle.vb</DependentUpon>
     </Compile>
@@ -153,9 +147,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fProductos.resx">
       <DependentUpon>fProductos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ventas\fInicioVenta.resx">
-      <DependentUpon>fInicioVenta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\Historial\fVentaDetalle.resx">
       <DependentUpon>fVentaDetalle.vb</DependentUpon>

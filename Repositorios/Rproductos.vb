@@ -117,6 +117,11 @@ Public Class Rproductos
         contexto.CargarCampos(tabla, dato1, dato2, dato3, lLegajo, pBotones, pCampos, tNombre, tPrecio, tCategoria)
     End Sub
 
+    Sub CargarCamposProductosV(IdProducto As String, tNombre As TextBox,
+                             tPrecio As TextBox)
+
+        contexto.CargarCamposV(tabla, dato1, dato2, dato3, IdProducto, tNombre, tPrecio)
+    End Sub
 
     'Este es particular del formulario.
     Sub LimpiarCampos(tNombre As TextBox, tPrecio As TextBox, tCategoria As TextBox, lLegajo As Label)
@@ -124,6 +129,11 @@ Public Class Rproductos
         tNombre.Text = ""
         tPrecio.Text = ""
         tCategoria.Text = ""
+    End Sub
+
+    Sub LimpiarCamposV(tNombre As TextBox, tPrecio As TextBox)
+        tNombre.Text = ""
+        tPrecio.Text = ""
     End Sub
     'Para limpiar un campo en particular.
     Sub LimpiarCampos(tdato As TextBox)

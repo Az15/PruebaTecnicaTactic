@@ -24,7 +24,8 @@ Partial Class fVentas
     Private Sub InitializeComponent()
         Me.bVolver = New System.Windows.Forms.Button()
         Me.pPedidoTotal = New System.Windows.Forms.Panel()
-        Me.lPedidoTotal = New System.Windows.Forms.Label()
+        Me.lTotalaAgregar = New System.Windows.Forms.Label()
+        Me.lTextoPedido = New System.Windows.Forms.Label()
         Me.bFinalizarCompra = New System.Windows.Forms.Button()
         Me.pFiltros = New System.Windows.Forms.Panel()
         Me.bQuitarFiltros = New System.Windows.Forms.Button()
@@ -32,14 +33,12 @@ Partial Class fVentas
         Me.Label1 = New System.Windows.Forms.Label()
         Me.bSalir = New System.Windows.Forms.Button()
         Me.pCampos = New System.Windows.Forms.Panel()
+        Me.tCantidad = New System.Windows.Forms.TextBox()
         Me.bAgregarCarrito = New System.Windows.Forms.Button()
         Me.lCantidad = New System.Windows.Forms.Label()
-        Me.lCantProd = New System.Windows.Forms.ListBox()
         Me.tNombre = New System.Windows.Forms.TextBox()
-        Me.lCategoria = New System.Windows.Forms.Label()
         Me.lPrecio = New System.Windows.Forms.Label()
         Me.lNombre = New System.Windows.Forms.Label()
-        Me.tCategoria = New System.Windows.Forms.TextBox()
         Me.tPrecio = New System.Windows.Forms.TextBox()
         Me.bBuscar = New System.Windows.Forms.Button()
         Me.gVentas = New System.Windows.Forms.DataGridView()
@@ -47,6 +46,8 @@ Partial Class fVentas
         Me.tBuscar = New System.Windows.Forms.TextBox()
         Me.bMinimizar = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lSeleccionCliente = New System.Windows.Forms.Label()
+        Me.cbClientes = New System.Windows.Forms.ComboBox()
         Me.pPedidoTotal.SuspendLayout()
         Me.pFiltros.SuspendLayout()
         Me.pCampos.SuspendLayout()
@@ -59,7 +60,7 @@ Partial Class fVentas
         Me.bVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bVolver.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.bVolver.ForeColor = System.Drawing.Color.Black
-        Me.bVolver.Location = New System.Drawing.Point(14, 450)
+        Me.bVolver.Location = New System.Drawing.Point(14, 486)
         Me.bVolver.Name = "bVolver"
         Me.bVolver.Size = New System.Drawing.Size(143, 39)
         Me.bVolver.TabIndex = 82
@@ -69,27 +70,39 @@ Partial Class fVentas
         'pPedidoTotal
         '
         Me.pPedidoTotal.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.pPedidoTotal.Controls.Add(Me.lPedidoTotal)
-        Me.pPedidoTotal.Location = New System.Drawing.Point(535, 344)
+        Me.pPedidoTotal.Controls.Add(Me.lTotalaAgregar)
+        Me.pPedidoTotal.Controls.Add(Me.lTextoPedido)
+        Me.pPedidoTotal.Location = New System.Drawing.Point(535, 376)
         Me.pPedidoTotal.Name = "pPedidoTotal"
         Me.pPedidoTotal.Size = New System.Drawing.Size(341, 91)
         Me.pPedidoTotal.TabIndex = 81
         '
-        'lPedidoTotal
+        'lTotalaAgregar
         '
-        Me.lPedidoTotal.AutoSize = True
-        Me.lPedidoTotal.Location = New System.Drawing.Point(9, 16)
-        Me.lPedidoTotal.Name = "lPedidoTotal"
-        Me.lPedidoTotal.Size = New System.Drawing.Size(64, 13)
-        Me.lPedidoTotal.TabIndex = 0
-        Me.lPedidoTotal.Text = "PedidoTotal"
+        Me.lTotalaAgregar.AutoSize = True
+        Me.lTotalaAgregar.Font = New System.Drawing.Font("Cambria", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lTotalaAgregar.ForeColor = System.Drawing.Color.Green
+        Me.lTotalaAgregar.Location = New System.Drawing.Point(115, 15)
+        Me.lTotalaAgregar.Name = "lTotalaAgregar"
+        Me.lTotalaAgregar.Size = New System.Drawing.Size(0, 43)
+        Me.lTotalaAgregar.TabIndex = 1
+        '
+        'lTextoPedido
+        '
+        Me.lTextoPedido.AutoSize = True
+        Me.lTextoPedido.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lTextoPedido.Location = New System.Drawing.Point(14, 15)
+        Me.lTextoPedido.Name = "lTextoPedido"
+        Me.lTextoPedido.Size = New System.Drawing.Size(70, 13)
+        Me.lTextoPedido.TabIndex = 0
+        Me.lTextoPedido.Text = "Pedido Total:"
         '
         'bFinalizarCompra
         '
         Me.bFinalizarCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bFinalizarCompra.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.bFinalizarCompra.ForeColor = System.Drawing.Color.Black
-        Me.bFinalizarCompra.Location = New System.Drawing.Point(733, 450)
+        Me.bFinalizarCompra.Location = New System.Drawing.Point(733, 486)
         Me.bFinalizarCompra.Name = "bFinalizarCompra"
         Me.bFinalizarCompra.Size = New System.Drawing.Size(143, 39)
         Me.bFinalizarCompra.TabIndex = 80
@@ -140,7 +153,7 @@ Partial Class fVentas
         'bSalir
         '
         Me.bSalir.ForeColor = System.Drawing.Color.DimGray
-        Me.bSalir.Location = New System.Drawing.Point(847, -1)
+        Me.bSalir.Location = New System.Drawing.Point(869, -3)
         Me.bSalir.Name = "bSalir"
         Me.bSalir.Size = New System.Drawing.Size(42, 36)
         Me.bSalir.TabIndex = 78
@@ -150,19 +163,24 @@ Partial Class fVentas
         'pCampos
         '
         Me.pCampos.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.pCampos.Controls.Add(Me.tCantidad)
         Me.pCampos.Controls.Add(Me.bAgregarCarrito)
         Me.pCampos.Controls.Add(Me.lCantidad)
-        Me.pCampos.Controls.Add(Me.lCantProd)
         Me.pCampos.Controls.Add(Me.tNombre)
-        Me.pCampos.Controls.Add(Me.lCategoria)
         Me.pCampos.Controls.Add(Me.lPrecio)
         Me.pCampos.Controls.Add(Me.lNombre)
-        Me.pCampos.Controls.Add(Me.tCategoria)
         Me.pCampos.Controls.Add(Me.tPrecio)
         Me.pCampos.Location = New System.Drawing.Point(535, 129)
         Me.pCampos.Name = "pCampos"
         Me.pCampos.Size = New System.Drawing.Size(341, 204)
         Me.pCampos.TabIndex = 77
+        '
+        'tCantidad
+        '
+        Me.tCantidad.Location = New System.Drawing.Point(183, 71)
+        Me.tCantidad.Name = "tCantidad"
+        Me.tCantidad.Size = New System.Drawing.Size(100, 20)
+        Me.tCantidad.TabIndex = 28
         '
         'bAgregarCarrito
         '
@@ -181,41 +199,26 @@ Partial Class fVentas
         'lCantidad
         '
         Me.lCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.lCantidad.Location = New System.Drawing.Point(3, 13)
+        Me.lCantidad.Location = New System.Drawing.Point(3, 72)
         Me.lCantidad.Name = "lCantidad"
         Me.lCantidad.Size = New System.Drawing.Size(143, 26)
         Me.lCantidad.TabIndex = 26
         Me.lCantidad.Text = "Seleccione Cantidad:"
         '
-        'lCantProd
-        '
-        Me.lCantProd.FormattingEnabled = True
-        Me.lCantProd.Location = New System.Drawing.Point(183, 13)
-        Me.lCantProd.Name = "lCantProd"
-        Me.lCantProd.Size = New System.Drawing.Size(143, 17)
-        Me.lCantProd.TabIndex = 25
-        '
         'tNombre
         '
-        Me.tNombre.Location = New System.Drawing.Point(183, 48)
+        Me.tNombre.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.tNombre.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.tNombre.Location = New System.Drawing.Point(183, 107)
         Me.tNombre.Name = "tNombre"
         Me.tNombre.ReadOnly = True
-        Me.tNombre.Size = New System.Drawing.Size(143, 20)
+        Me.tNombre.Size = New System.Drawing.Size(143, 13)
         Me.tNombre.TabIndex = 24
-        '
-        'lCategoria
-        '
-        Me.lCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.lCategoria.Location = New System.Drawing.Point(9, 117)
-        Me.lCategoria.Name = "lCategoria"
-        Me.lCategoria.Size = New System.Drawing.Size(100, 20)
-        Me.lCategoria.TabIndex = 14
-        Me.lCategoria.Text = "Categoria:"
         '
         'lPrecio
         '
         Me.lPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.lPrecio.Location = New System.Drawing.Point(8, 81)
+        Me.lPrecio.Location = New System.Drawing.Point(8, 140)
         Me.lPrecio.Name = "lPrecio"
         Me.lPrecio.Size = New System.Drawing.Size(100, 23)
         Me.lPrecio.TabIndex = 13
@@ -224,26 +227,20 @@ Partial Class fVentas
         'lNombre
         '
         Me.lNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.lNombre.Location = New System.Drawing.Point(8, 49)
+        Me.lNombre.Location = New System.Drawing.Point(8, 108)
         Me.lNombre.Name = "lNombre"
         Me.lNombre.Size = New System.Drawing.Size(100, 23)
         Me.lNombre.TabIndex = 12
         Me.lNombre.Text = "Nombre:"
         '
-        'tCategoria
-        '
-        Me.tCategoria.Location = New System.Drawing.Point(183, 117)
-        Me.tCategoria.Name = "tCategoria"
-        Me.tCategoria.ReadOnly = True
-        Me.tCategoria.Size = New System.Drawing.Size(143, 20)
-        Me.tCategoria.TabIndex = 6
-        '
         'tPrecio
         '
-        Me.tPrecio.Location = New System.Drawing.Point(183, 80)
+        Me.tPrecio.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.tPrecio.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.tPrecio.Location = New System.Drawing.Point(183, 139)
         Me.tPrecio.Name = "tPrecio"
         Me.tPrecio.ReadOnly = True
-        Me.tPrecio.Size = New System.Drawing.Size(143, 20)
+        Me.tPrecio.Size = New System.Drawing.Size(143, 13)
         Me.tPrecio.TabIndex = 0
         '
         'bBuscar
@@ -251,33 +248,33 @@ Partial Class fVentas
         Me.bBuscar.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.bBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
-        Me.bBuscar.Location = New System.Drawing.Point(437, 38)
+        Me.bBuscar.Location = New System.Drawing.Point(426, 88)
         Me.bBuscar.Name = "bBuscar"
-        Me.bBuscar.Size = New System.Drawing.Size(75, 35)
+        Me.bBuscar.Size = New System.Drawing.Size(75, 27)
         Me.bBuscar.TabIndex = 76
         Me.bBuscar.Text = "Buscar"
         Me.bBuscar.UseVisualStyleBackColor = False
         '
         'gVentas
         '
-        Me.gVentas.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.gVentas.BackgroundColor = System.Drawing.SystemColors.Control
         Me.gVentas.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.gVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gVentas.Location = New System.Drawing.Point(14, 80)
+        Me.gVentas.Location = New System.Drawing.Point(14, 129)
         Me.gVentas.Name = "gVentas"
         Me.gVentas.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Silver
         Me.gVentas.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gVentas.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black
         Me.gVentas.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.gVentas.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black
-        Me.gVentas.Size = New System.Drawing.Size(515, 355)
+        Me.gVentas.Size = New System.Drawing.Size(515, 338)
         Me.gVentas.TabIndex = 75
         '
         'lBusque
         '
         Me.lBusque.AutoSize = True
         Me.lBusque.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.lBusque.Location = New System.Drawing.Point(11, 48)
+        Me.lBusque.Location = New System.Drawing.Point(11, 94)
         Me.lBusque.Name = "lBusque"
         Me.lBusque.Size = New System.Drawing.Size(142, 17)
         Me.lBusque.TabIndex = 74
@@ -285,7 +282,7 @@ Partial Class fVentas
         '
         'tBuscar
         '
-        Me.tBuscar.Location = New System.Drawing.Point(159, 47)
+        Me.tBuscar.Location = New System.Drawing.Point(159, 94)
         Me.tBuscar.Name = "tBuscar"
         Me.tBuscar.Size = New System.Drawing.Size(261, 20)
         Me.tBuscar.TabIndex = 73
@@ -293,7 +290,7 @@ Partial Class fVentas
         'bMinimizar
         '
         Me.bMinimizar.ForeColor = System.Drawing.Color.DimGray
-        Me.bMinimizar.Location = New System.Drawing.Point(814, -1)
+        Me.bMinimizar.Location = New System.Drawing.Point(839, -1)
         Me.bMinimizar.Name = "bMinimizar"
         Me.bMinimizar.Size = New System.Drawing.Size(37, 36)
         Me.bMinimizar.TabIndex = 72
@@ -305,15 +302,34 @@ Partial Class fVentas
         Me.PictureBox1.BackColor = System.Drawing.Color.LightGray
         Me.PictureBox1.Location = New System.Drawing.Point(-1, -1)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(890, 36)
+        Me.PictureBox1.Size = New System.Drawing.Size(912, 36)
         Me.PictureBox1.TabIndex = 71
         Me.PictureBox1.TabStop = False
+        '
+        'lSeleccionCliente
+        '
+        Me.lSeleccionCliente.AutoSize = True
+        Me.lSeleccionCliente.Location = New System.Drawing.Point(14, 50)
+        Me.lSeleccionCliente.Name = "lSeleccionCliente"
+        Me.lSeleccionCliente.Size = New System.Drawing.Size(125, 13)
+        Me.lSeleccionCliente.TabIndex = 83
+        Me.lSeleccionCliente.Text = "SELECCIONE CLIENTE:"
+        '
+        'cbClientes
+        '
+        Me.cbClientes.FormattingEnabled = True
+        Me.cbClientes.Location = New System.Drawing.Point(145, 46)
+        Me.cbClientes.Name = "cbClientes"
+        Me.cbClientes.Size = New System.Drawing.Size(187, 21)
+        Me.cbClientes.TabIndex = 84
         '
         'fVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(885, 498)
+        Me.ClientSize = New System.Drawing.Size(910, 549)
+        Me.Controls.Add(Me.cbClientes)
+        Me.Controls.Add(Me.lSeleccionCliente)
         Me.Controls.Add(Me.bVolver)
         Me.Controls.Add(Me.pPedidoTotal)
         Me.Controls.Add(Me.bFinalizarCompra)
@@ -344,7 +360,7 @@ Partial Class fVentas
 
     Friend WithEvents bVolver As Button
     Friend WithEvents pPedidoTotal As Panel
-    Friend WithEvents lPedidoTotal As Label
+    Friend WithEvents lTextoPedido As Label
     Friend WithEvents bFinalizarCompra As Button
     Friend WithEvents pFiltros As Panel
     Friend WithEvents bQuitarFiltros As Button
@@ -354,12 +370,9 @@ Partial Class fVentas
     Friend WithEvents pCampos As Panel
     Friend WithEvents bAgregarCarrito As Button
     Friend WithEvents lCantidad As Label
-    Friend WithEvents lCantProd As ListBox
     Friend WithEvents tNombre As TextBox
-    Friend WithEvents lCategoria As Label
     Friend WithEvents lPrecio As Label
     Friend WithEvents lNombre As Label
-    Friend WithEvents tCategoria As TextBox
     Friend WithEvents tPrecio As TextBox
     Friend WithEvents bBuscar As Button
     Friend WithEvents gVentas As DataGridView
@@ -367,4 +380,8 @@ Partial Class fVentas
     Friend WithEvents tBuscar As TextBox
     Friend WithEvents bMinimizar As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents lTotalaAgregar As Label
+    Friend WithEvents lSeleccionCliente As Label
+    Friend WithEvents cbClientes As ComboBox
+    Friend WithEvents tCantidad As TextBox
 End Class
