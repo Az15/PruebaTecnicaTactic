@@ -200,16 +200,7 @@ Public Class ContextoDB
     'Funciones Solo para ventas
     '--------------------------------------------------------------------------------------------------
 
-    Sub CargarVenta(Tabla As String, lLegajo As Label, lClienteSelect As Label, Datotabla1 As String)
-        If Val(lLegajo.Text) = 0 Then
-            MessageBox.Show("Error al cargar los datos de cliente, hable con un administrador", "Error al cargar datos Legajo Erroneo")
-            Exit Sub
-        End If
-        Dim da As New SqlDataAdapter("SELECT upper(ltrim(rtrim(isnull(" & Datotabla1 & ",'****')))) as " & Datotabla1 & " from " & Tabla & " where ID=" & Val(lLegajo.Text), con)
-        Dim ds As New DataSet
-        da.Fill(ds, Tabla)
-        lClienteSelect.Text = ds.Tables(Tabla).Rows(0)(Datotabla1)
-    End Sub
+
     'Con esta funcion vamos a levantar en ventas en un combobox
     Public Function ObtenerClientes() As DataTable
         Dim query As String = "SELECT Id, Cliente FROM Clientes"
@@ -252,15 +243,24 @@ Public Class ContextoDB
 
     Public Sub ActualizarVenta(idVenta As Integer, fecha As Date, total As Decimal)
         Dim query As String = "UPDATE Ventas SET Fecha = @Fecha, Total = @Total WHERE Id = @IdVenta"
-        Using connection As New SqlConnection(connectionstring)
-            Using command As New SqlCommand(query, connection)
-                command.Parameters.AddWithValue("@Fecha", fecha)
-                command.Parameters.AddWithValue("@Total", total)
-                command.Parameters.AddWithValue("@IdVenta", idVenta)
+        Using command As New SqlCommand(query, con)
+            command.Parameters.AddWithValue("@Fecha", fecha)
+            command.Parameters.AddWithValue("@Total", total)
+            command.Parameters.AddWithValue("@IdVenta", idVenta)
+            con.Open()
+            command.ExecuteNonQuery()
+            con.Close()
+        End Using
+    End Sub
 
-                connection.Open()
-                command.ExecuteNonQuery()
-            End Using
+    Public Sub ActualizarVentaD(idVenta As Integer, total As Decimal)
+        Dim query As String = "UPDATE Ventas SET Total = @Total WHERE Id = @IdVenta"
+        Using command As New SqlCommand(query, con)
+            command.Parameters.AddWithValue("@Total", total)
+            command.Parameters.AddWithValue("@IdVenta", idVenta)
+            con.Open()
+            command.ExecuteNonQuery()
+            con.Close()
         End Using
     End Sub
 
@@ -283,6 +283,7 @@ Public Class ContextoDB
             con.Close()
         End Using
     End Sub
+
     Public Function ObtenerVentasPorCliente(idCliente As Integer) As DataTable
         Dim query As String = "SELECT Id, Fecha, Total FROM Ventas WHERE IdCliente = @IdCliente"
         Dim dataTable As New DataTable()
@@ -296,5 +297,118 @@ Public Class ContextoDB
         End Using
         Return dataTable
     End Function
+
+    Sub ObtenerVentas(gVentas As DataGridView, tabla As String)
+        Dim query As String = "SELECT * FROM " & tabla & " Order By Id"
+        Dim da As New SqlDataAdapter(query, con)
+        Dim ds As New DataSet
+        da.Fill(ds, tabla)
+        If ds.Tables(tabla).Rows.Count = 0 Then
+            gVentas.Visible = False
+        Else
+            gVentas.DataSource = ds.Tables(tabla)
+            gVentas.Refresh()
+            gVentas.Visible = True
+        End If
+    End Sub
+    'Error a solucionar con detalles.
+    Sub ObtenerDetalle(gDetalle As DataGridView, tabla As String,where As String, id As String)
+        Dim query As String = "SELECT * FROM " & tabla & " where " & where & "= " & id
+        Dim da As New SqlDataAdapter(query, con)
+        Dim ds As New DataSet
+        da.Fill(ds, where)
+        If ds.Tables(where).Rows.Count = 0 Then
+            gDetalle.Visible = False
+        Else
+            gDetalle.DataSource = ds.Tables(where)
+            gDetalle.Refresh()
+            gDetalle.Visible = True
+        End If
+    End Sub
+
+
+    Sub CargarCamposC(Tabla As String, Datotabla1 As String, Datotabla2 As String,
+                      lLegajo As Label, tDato1 As Label, tDato2 As Label)
+        If Val(lLegajo.Text) = 0 Then
+            Exit Sub
+        Else
+            Dim da As New SqlDataAdapter("SELECT upper(ltrim(rtrim(isnull(" & Datotabla1 & ",'****')))) as " & Datotabla1 &
+                        " ,upper(ltrim(rtrim(isnull(" & Datotabla2 & ",'****')))) as " & Datotabla2 &
+                        " FROM " & Tabla & " where ID=" & Val(lLegajo.Text), con)
+
+            Dim ds As New DataSet
+            da.Fill(ds, Tabla)
+            tDato1.Text = ds.Tables(Tabla).Rows(0)(Datotabla1)
+            tDato2.Text = ds.Tables(Tabla).Rows(0)(Datotabla2)
+            Dim da2 As New SqlDataAdapter("Select cliente from clientes where ID= " & Val(tDato1.Text), con)
+            Dim ds2 As New DataSet
+            da2.Fill(ds2, "Clientes")
+            tDato1.Text = ds2.Tables("Clientes").Rows(0)("cliente")
+
+
+        End If
+    End Sub
+    Public Function ObtenerItemsCompraPorVenta(idVenta As Integer) As DataTable
+        Dim query As String = "SELECT Id, IdProducto, Cantidad, PrecioTotal FROM VentasItems WHERE IdVenta = @IdVenta"
+
+        Dim dataTable As New DataTable()
+        Using connection As New SqlConnection(connectionstring)
+            Using command As New SqlCommand(query, connection)
+                command.Parameters.AddWithValue("@IdVenta", idVenta)
+
+                connection.Open()
+                Using adapter As New SqlDataAdapter(command)
+                    adapter.Fill(dataTable)
+                End Using
+            End Using
+        End Using
+
+        Return dataTable
+    End Function
+    Public Sub EliminarItemCompra(idItem As Integer)
+        Dim query As String = "DELETE FROM VentasItems WHERE Id = @IdItem"
+        Using command As New SqlCommand(query, con)
+            command.Parameters.AddWithValue("@IdItem", idItem)
+            con.Open()
+            command.ExecuteNonQuery()
+            con.Close()
+        End Using
+    End Sub
+    Sub ObtenerVentasItems(gVentasDetalle As DataGridView, lLegajo As String)
+        Dim query As String = "SELECT * FROM VentasItems where IdVenta= " & lLegajo & ""
+        Dim da As New SqlDataAdapter(query, con)
+        Dim ds As New DataSet
+        da.Fill(ds, "Ventas")
+        If ds.Tables("Ventas").Rows.Count = 0 Then
+            gVentasDetalle.Visible = False
+        Else
+            gVentasDetalle.DataSource = ds.Tables("Ventas")
+            gVentasDetalle.Refresh()
+            gVentasDetalle.Visible = True
+        End If
+    End Sub
+
+    Sub CargarCamposDetalle(Tabla As String, Datotabla1 As String, Datotabla2 As String, Datotabla3 As String, Datotabla4 As String,
+                            lLegajo As Label, tDato1 As Label, lDato2 As Label, tDato3 As TextBox, lDato4 As Label)
+        If Val(lLegajo.Text) = 0 Then
+            Exit Sub
+        Else
+            Dim da As New SqlDataAdapter("SELECT upper(ltrim(rtrim(isnull(" & Datotabla1 & ",'****')))) as " & Datotabla1 & "," &
+                                          "upper(ltrim(rtrim(isnull(" & Datotabla2 & ",'****')))) as " & Datotabla2 & "," &
+                                         "upper(ltrim(rtrim(isnull(" & Datotabla3 & ",'****')))) as " & Datotabla3 & "," &
+                                         "upper(ltrim(rtrim(isnull(" & Datotabla4 & ",'****')))) as " & Datotabla4 &
+                                         " FROM " & Tabla & " where ID= " & Val(lLegajo.Text), con)
+            Dim ds As New DataSet
+            da.Fill(ds, Tabla)
+            tDato1.Text = ds.Tables(Tabla).Rows(0)(Datotabla1)
+            lDato2.Text = ds.Tables(Tabla).Rows(0)(Datotabla2)
+            tDato3.Text = ds.Tables(Tabla).Rows(0)(Datotabla3)
+            lDato4.Text = ds.Tables(Tabla).Rows(0)(Datotabla4)
+            Dim da2 As New SqlDataAdapter("Select Nombre from Productos where ID= " & Val(tDato1.Text), con)
+            Dim ds2 As New DataSet
+            da2.Fill(ds2, "productos")
+            tDato1.Text = ds2.Tables("Productos").Rows(0)("Nombre")
+        End If
+    End Sub
 
 End Class

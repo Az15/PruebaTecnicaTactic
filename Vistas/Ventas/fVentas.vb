@@ -22,6 +22,7 @@ Public Class fVentas
         cbClientes.DisplayMember = "Cliente"
         cbClientes.ValueMember = "Id"
         cbClientes.DataSource = RepositorioVentas.ObtenerClientes()
+        RepositorioProductos.CargarFiltro(cbFiltroCompra)
         RepositorioProductos.CargarProductos(gVentas)
     End Sub
 
@@ -30,6 +31,7 @@ Public Class fVentas
     End Sub
 
     Private Sub bMinimizar_Click(sender As Object, e As EventArgs) Handles bMinimizar.Click
+        Me.WindowState = FormWindowState.Minimized
     End Sub
 
     Private Sub bAgregarCarrito_Click(sender As Object, e As EventArgs) Handles bAgregarCarrito.Click
@@ -92,6 +94,7 @@ Public Class fVentas
             tfila = gVentas.Rows(fila).Cells(0).Value
             idProducto = tfila.ToString()
             RepositorioProductos.CargarCamposProductosV(idProducto, tNombre, tPrecio)
+            tCantidad.Text = 1
         End If
     End Sub
     Private Function CrearVenta() As Integer
@@ -106,6 +109,40 @@ Public Class fVentas
         Return idVenta
     End Function
     Private Sub LimpiarFormulario()
-        gVentas.ClearSelection()
+        lTotalaAgregar.Text = "0"
+        lTotalaAgregar.Visible = False
+        cbClientes.Text = ""
+        tPrecio.Text = ""
+        tPrecio.Visible = False
+        tCantidad.Text = 0
+        tNombre.Text = ""
+        tNombre.Visible = False
+    End Sub
+
+    'Para dar funcionalidad y mover los forms
+    Dim m As Integer = 0, mx As Integer, mi As Integer
+    Private Sub fVentas_MouseUp(sender As Object, e As MouseEventArgs) Handles MyBase.MouseUp
+        m = 0
+    End Sub
+
+    Private Sub cbFiltroCompra_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbFiltroCompra.SelectedValueChanged
+        RepositorioProductos.buscar(cbFiltroCompra.Text, gVentas)
+    End Sub
+
+    Private Sub bQuitarFiltros_Click(sender As Object, e As EventArgs) Handles bQuitarFiltros.Click
+        RepositorioProductos.CargarProductos(gVentas)
+    End Sub
+
+    Private Sub fVentas_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        If m = 1 Then
+
+            Me.SetDesktopLocation(MousePosition.X - mx, MousePosition.Y - mi)
+        End If
+    End Sub
+
+    Private Sub fVentas_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
+        m = 1
+        mx = e.X
+        mi = e.Y
     End Sub
 End Class

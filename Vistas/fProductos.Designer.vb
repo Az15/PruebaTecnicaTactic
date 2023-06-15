@@ -46,6 +46,7 @@ Partial Class fProductos
         Me.cbFiltro = New System.Windows.Forms.ComboBox()
         Me.bQuitarFiltro = New System.Windows.Forms.Button()
         Me.lFiltroCategorias = New System.Windows.Forms.Label()
+        Me.bReportes = New System.Windows.Forms.Button()
         Me.pBotones.SuspendLayout()
         CType(Me.gProductos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +81,7 @@ Partial Class fProductos
         Me.bCrear.Name = "bCrear"
         Me.bCrear.Size = New System.Drawing.Size(87, 37)
         Me.bCrear.TabIndex = 45
-        Me.bCrear.Text = "Crear Cliente"
+        Me.bCrear.Text = "Crear Nuevo Producto"
         Me.bCrear.UseVisualStyleBackColor = False
         '
         'pBotones
@@ -101,7 +102,7 @@ Partial Class fProductos
         Me.bEliminar.Name = "bEliminar"
         Me.bEliminar.Size = New System.Drawing.Size(75, 37)
         Me.bEliminar.TabIndex = 2
-        Me.bEliminar.Text = "Eliminar Cliente"
+        Me.bEliminar.Text = "Eliminar Producto"
         Me.bEliminar.UseVisualStyleBackColor = False
         '
         'bCambio
@@ -180,7 +181,7 @@ Partial Class fProductos
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.LightGray
-        Me.PictureBox1.Location = New System.Drawing.Point(-7, -1)
+        Me.PictureBox1.Location = New System.Drawing.Point(-20, -1)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(981, 36)
         Me.PictureBox1.TabIndex = 44
@@ -274,11 +275,22 @@ Partial Class fProductos
         Me.lFiltroCategorias.TabIndex = 58
         Me.lFiltroCategorias.Text = "Filtrar por Categorias:"
         '
+        'bReportes
+        '
+        Me.bReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bReportes.Location = New System.Drawing.Point(724, 329)
+        Me.bReportes.Name = "bReportes"
+        Me.bReportes.Size = New System.Drawing.Size(100, 45)
+        Me.bReportes.TabIndex = 59
+        Me.bReportes.Text = "Ver Reportes"
+        Me.bReportes.UseVisualStyleBackColor = True
+        '
         'fProductos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(961, 386)
+        Me.Controls.Add(Me.bReportes)
         Me.Controls.Add(Me.lFiltroCategorias)
         Me.Controls.Add(Me.bQuitarFiltro)
         Me.Controls.Add(Me.cbFiltro)
@@ -299,6 +311,7 @@ Partial Class fProductos
         Me.Name = "fProductos"
         Me.Opacity = 0.96R
         Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "fProductos"
         Me.pBotones.ResumeLayout(False)
         CType(Me.gProductos, System.ComponentModel.ISupportInitialize).EndInit()
@@ -333,4 +346,5 @@ Partial Class fProductos
     Friend WithEvents cbFiltro As ComboBox
     Friend WithEvents bQuitarFiltro As Button
     Friend WithEvents lFiltroCategorias As Label
+    Friend WithEvents bReportes As Button
 End Class

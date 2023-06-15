@@ -50,10 +50,31 @@
     <ApplicationIcon>Tacticlogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -75,12 +96,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ventas\fCarritoFinal.Designer.vb">
-      <DependentUpon>fCarritoFinal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Ventas\fCarritoFinal.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="fProductos.Designer.vb">
       <DependentUpon>fProductos.vb</DependentUpon>
     </Compile>
@@ -98,6 +113,23 @@
     </Compile>
     <Compile Include="fInicio.Designer.vb">
       <DependentUpon>fInicio.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\DsReportes.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsReportes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\fReportesProductos.Designer.vb">
+      <DependentUpon>fReportesProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\fReportesProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\fRVentasHistorico.Designer.vb">
+      <DependentUpon>fRVentasHistorico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\fRVentasHistorico.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ventas\Historial\fVentaDetalle.Designer.vb">
@@ -136,9 +168,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ventas\fCarritoFinal.resx">
-      <DependentUpon>fCarritoFinal.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="fClientes.resx">
       <DependentUpon>fClientes.vb</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +177,14 @@
     <EmbeddedResource Include="fProductos.resx">
       <DependentUpon>fProductos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\fReportesProductos.resx">
+      <DependentUpon>fReportesProductos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\fRVentasHistorico.resx">
+      <DependentUpon>fRVentasHistorico.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\RPproductos.rdlc" />
+    <EmbeddedResource Include="Reportes\rVentashistorico.rdlc" />
     <EmbeddedResource Include="Ventas\Historial\fVentaDetalle.resx">
       <DependentUpon>fVentaDetalle.vb</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +212,18 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Reportes\DsReportes.xsc">
+      <DependentUpon>DsReportes.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DsReportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsReportes.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reportes\DsReportes.xss">
+      <DependentUpon>DsReportes.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modelos\Modelos.vbproj">
@@ -187,6 +236,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tacticlogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -117,4 +117,24 @@ Public Class fClientes
             bBuscar_Click(sender, e)
         End If
     End Sub
+
+    'Para dar funcionalidad y mover los forms
+    Dim m As Integer = 0, mx As Integer, mi As Integer
+    Private Sub fClientes_MouseUp(sender As Object, e As MouseEventArgs) Handles MyBase.MouseUp
+        m = 0
+    End Sub
+
+    Private Sub fClientes_MouseMove(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+        If m = 1 Then
+
+            Me.SetDesktopLocation(MousePosition.X - mx, MousePosition.Y - mi)
+        End If
+    End Sub
+
+    Private Sub fClientes_MouseDown(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
+        m = 1
+        mx = e.X
+        mi = e.Y
+    End Sub
+
 End Class

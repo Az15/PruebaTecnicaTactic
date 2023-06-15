@@ -22,6 +22,7 @@ Partial Class fVentas
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(fVentas))
         Me.bVolver = New System.Windows.Forms.Button()
         Me.pPedidoTotal = New System.Windows.Forms.Panel()
         Me.lTotalaAgregar = New System.Windows.Forms.Label()
@@ -29,7 +30,6 @@ Partial Class fVentas
         Me.bFinalizarCompra = New System.Windows.Forms.Button()
         Me.pFiltros = New System.Windows.Forms.Panel()
         Me.bQuitarFiltros = New System.Windows.Forms.Button()
-        Me.lCategorias = New System.Windows.Forms.ListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.bSalir = New System.Windows.Forms.Button()
         Me.pCampos = New System.Windows.Forms.Panel()
@@ -48,6 +48,7 @@ Partial Class fVentas
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lSeleccionCliente = New System.Windows.Forms.Label()
         Me.cbClientes = New System.Windows.Forms.ComboBox()
+        Me.cbFiltroCompra = New System.Windows.Forms.ComboBox()
         Me.pPedidoTotal.SuspendLayout()
         Me.pFiltros.SuspendLayout()
         Me.pCampos.SuspendLayout()
@@ -111,8 +112,8 @@ Partial Class fVentas
         '
         'pFiltros
         '
+        Me.pFiltros.Controls.Add(Me.cbFiltroCompra)
         Me.pFiltros.Controls.Add(Me.bQuitarFiltros)
-        Me.pFiltros.Controls.Add(Me.lCategorias)
         Me.pFiltros.Controls.Add(Me.Label1)
         Me.pFiltros.Location = New System.Drawing.Point(535, 39)
         Me.pFiltros.Name = "pFiltros"
@@ -126,20 +127,12 @@ Partial Class fVentas
         Me.bQuitarFiltros.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bQuitarFiltros.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.5!)
         Me.bQuitarFiltros.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.bQuitarFiltros.Location = New System.Drawing.Point(123, 34)
+        Me.bQuitarFiltros.Location = New System.Drawing.Point(109, 34)
         Me.bQuitarFiltros.Name = "bQuitarFiltros"
         Me.bQuitarFiltros.Size = New System.Drawing.Size(111, 22)
         Me.bQuitarFiltros.TabIndex = 70
         Me.bQuitarFiltros.Text = "Quitar Filtros"
         Me.bQuitarFiltros.UseVisualStyleBackColor = False
-        '
-        'lCategorias
-        '
-        Me.lCategorias.FormattingEnabled = True
-        Me.lCategorias.Location = New System.Drawing.Point(90, 11)
-        Me.lCategorias.Name = "lCategorias"
-        Me.lCategorias.Size = New System.Drawing.Size(169, 17)
-        Me.lCategorias.TabIndex = 69
         '
         'Label1
         '
@@ -152,8 +145,9 @@ Partial Class fVentas
         '
         'bSalir
         '
+        Me.bSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bSalir.ForeColor = System.Drawing.Color.DimGray
-        Me.bSalir.Location = New System.Drawing.Point(869, -3)
+        Me.bSalir.Location = New System.Drawing.Point(869, -1)
         Me.bSalir.Name = "bSalir"
         Me.bSalir.Size = New System.Drawing.Size(42, 36)
         Me.bSalir.TabIndex = 78
@@ -289,10 +283,11 @@ Partial Class fVentas
         '
         'bMinimizar
         '
+        Me.bMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bMinimizar.ForeColor = System.Drawing.Color.DimGray
-        Me.bMinimizar.Location = New System.Drawing.Point(839, -1)
+        Me.bMinimizar.Location = New System.Drawing.Point(829, -1)
         Me.bMinimizar.Name = "bMinimizar"
-        Me.bMinimizar.Size = New System.Drawing.Size(37, 36)
+        Me.bMinimizar.Size = New System.Drawing.Size(41, 36)
         Me.bMinimizar.TabIndex = 72
         Me.bMinimizar.Text = "-"
         Me.bMinimizar.UseVisualStyleBackColor = True
@@ -323,6 +318,16 @@ Partial Class fVentas
         Me.cbClientes.Size = New System.Drawing.Size(187, 21)
         Me.cbClientes.TabIndex = 84
         '
+        'cbFiltroCompra
+        '
+        Me.cbFiltroCompra.Cursor = System.Windows.Forms.Cursors.Default
+        Me.cbFiltroCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbFiltroCompra.FormattingEnabled = True
+        Me.cbFiltroCompra.Location = New System.Drawing.Point(90, 7)
+        Me.cbFiltroCompra.Name = "cbFiltroCompra"
+        Me.cbFiltroCompra.Size = New System.Drawing.Size(144, 21)
+        Me.cbFiltroCompra.TabIndex = 85
+        '
         'fVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -343,7 +348,9 @@ Partial Class fVentas
         Me.Controls.Add(Me.bMinimizar)
         Me.Controls.Add(Me.PictureBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "fVentas"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "fVentas"
         Me.pPedidoTotal.ResumeLayout(False)
         Me.pPedidoTotal.PerformLayout()
@@ -364,7 +371,6 @@ Partial Class fVentas
     Friend WithEvents bFinalizarCompra As Button
     Friend WithEvents pFiltros As Panel
     Friend WithEvents bQuitarFiltros As Button
-    Friend WithEvents lCategorias As ListBox
     Friend WithEvents Label1 As Label
     Friend WithEvents bSalir As Button
     Friend WithEvents pCampos As Panel
@@ -384,4 +390,5 @@ Partial Class fVentas
     Friend WithEvents lSeleccionCliente As Label
     Friend WithEvents cbClientes As ComboBox
     Friend WithEvents tCantidad As TextBox
+    Friend WithEvents cbFiltroCompra As ComboBox
 End Class
