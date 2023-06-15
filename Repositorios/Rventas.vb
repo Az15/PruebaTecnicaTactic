@@ -57,10 +57,6 @@ Public Class Rventas
                                      lLegajo, lNombre, lPrecioU, tCantidad, lPrecioTotal)
     End Sub
 
-    Public Function ObtenerItemsCompraPorVenta(idVenta As Integer) As DataTable
-        Return contexto.ObtenerItemsCompraPorVenta(idVenta)
-    End Function
-
     Public Sub EliminarItemCompra(idItem As Integer)
         contexto.EliminarItemCompra(idItem)
     End Sub

@@ -12,7 +12,6 @@ Public Class ContextoDB
         'Ejecuta la consulta de accion 'sql_de_accion' abriendo la conexion automaticamente
         'se da cuenta si es de insert, update o delete, porque mira dentro de la sentencia que se le pasa
         'devuelve true si se pudo hacer, y false si hubo algún error
-        Dim ar As String
         Dim adapter As New SqlDataAdapter, salida As Boolean = True
         Try
             con.Open()
@@ -56,17 +55,6 @@ Public Class ContextoDB
         End If
     End Function
 
-
-    'Prueba Basica SQL
-    Function PruebaSQL()
-        Try
-            con.Open()
-            Console.WriteLine("Conexion Exitosa. ")
-            con.Close()
-        Catch ex As Exception
-            Console.WriteLine("Error de conexion")
-        End Try
-    End Function
     'Hacemos una sobrecarga de Subs para utilizarla dependiendo la necesidad.
     Sub CargarCampos(Tabla As String, Datotabla1 As String, Datotabla2 As String, Datotabla3 As String,
                      lLegajo As Label, pBotones As Panel, pCampos As Panel, tDato1 As TextBox,
@@ -151,13 +139,6 @@ Public Class ContextoDB
         "").Replace(":", "").Replace("`", "").Replace("<", "").Replace(">",
         "").Replace("=", "").Replace("&", "")
     End Sub
-
-    Sub ArreglarCampo(ByRef campo As String)
-        campo = campo.Trim.Replace("'", "").Replace("""",
-        "").Replace("*", "").Replace("+", "").Replace("-", "").Replace("/",
-        "").Replace(":", "").Replace("`", "").Replace("<", "").Replace(">",
-        "").Replace("=", "").Replace("&", "")
-    End Sub
     '--------------------------------------------------------------------------------------
 
 
@@ -187,16 +168,7 @@ Public Class ContextoDB
 
 
     End Sub
-    'Con el primero traemos los datos a un ComboBox con el segundo impactamos el resultado en la tabla.(Estan todos los datos tabla.)
-    Sub Filtro(tabla As String, datoTabla1 As String, datoTabla2 As String, datoTabla3 As String, ByVal condicion As String, gridview As DataGridView)
-        Dim daprod As New SqlDataAdapter("select * from " & tabla & " where " & datoTabla1 & " like '%" & condicion & "%' OR " & datoTabla2 &
-                                         " like '%" & condicion & "%'" & "OR " & datoTabla3 & " like '%" & condicion & "%'", con)
-        Dim dsprod As New DataSet
-        daprod.Fill(dsprod, tabla)
 
-        gridview.DataSource = dsprod.Tables(tabla)
-        gridview.Refresh()
-    End Sub
     'Funciones Solo para ventas
     '--------------------------------------------------------------------------------------------------
 
@@ -348,23 +320,6 @@ Public Class ContextoDB
 
         End If
     End Sub
-    Public Function ObtenerItemsCompraPorVenta(idVenta As Integer) As DataTable
-        Dim query As String = "SELECT Id, IdProducto, Cantidad, PrecioTotal FROM VentasItems WHERE IdVenta = @IdVenta"
-
-        Dim dataTable As New DataTable()
-        Using connection As New SqlConnection(connectionstring)
-            Using command As New SqlCommand(query, connection)
-                command.Parameters.AddWithValue("@IdVenta", idVenta)
-
-                connection.Open()
-                Using adapter As New SqlDataAdapter(command)
-                    adapter.Fill(dataTable)
-                End Using
-            End Using
-        End Using
-
-        Return dataTable
-    End Function
     Public Sub EliminarItemCompra(idItem As Integer)
         Dim query As String = "DELETE FROM VentasItems WHERE Id = @IdItem"
         Using command As New SqlCommand(query, con)
